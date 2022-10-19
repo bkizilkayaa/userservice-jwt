@@ -1,8 +1,8 @@
 package com.example.burak.userservicejwt.controller;
 
+import com.example.burak.userservicejwt.dtos.RoleUserCreateRequest;
 import com.example.burak.userservicejwt.model.User;
 import com.example.burak.userservicejwt.service.UserService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,7 +32,12 @@ public class UserController {
     public ResponseEntity<User> createNewUser(@RequestBody User user){
         return new ResponseEntity<>(userService.saveUser(user),CREATED);
     }
-    @PostMapping("/addRoleToUser")
-    public boolean addRoleToUser(@PathVariable)
+    @PostMapping("/role/addtouser")
+    public ResponseEntity<?> addRoleToUser(@RequestBody RoleUserCreateRequest roleUserCreateRequest){
+        userService.addRoleToUser(roleUserCreateRequest.getUserName(),
+                roleUserCreateRequest.getRoleName());
+        return ResponseEntity.ok().build();
+    }
+
 
 }

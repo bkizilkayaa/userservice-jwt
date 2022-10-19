@@ -3,11 +3,9 @@ package com.example.burak.userservicejwt.service;
 import com.example.burak.userservicejwt.model.Role;
 import com.example.burak.userservicejwt.repository.RoleRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import static org.springframework.http.HttpStatus.OK;
+import java.util.List;
 
 @Service
 @Slf4j
@@ -18,12 +16,16 @@ public class RoleService {
         this.roleRepository = roleRepository;
     }
 
-    public ResponseEntity<Role> saveRole(Role role){
+    public Role saveRole(Role role){
         log.info("Saving new role {} to the database",role.getName());
-        return new ResponseEntity<>(roleRepository.save(role), OK);
+        return roleRepository.save(role);
     }
 
     public Role getRole(String roleName) {
         return roleRepository.findByName(roleName);
+    }
+
+    public List<Role> getAllRoles() {
+        return roleRepository.findAll();
     }
 }

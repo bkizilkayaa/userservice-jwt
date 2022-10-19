@@ -4,17 +4,14 @@ import com.example.burak.userservicejwt.model.Role;
 import com.example.burak.userservicejwt.model.User;
 import com.example.burak.userservicejwt.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.coyote.Response;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
-
-import static org.springframework.http.HttpStatus.OK;
 
 @Service
 @Slf4j
+@Transactional
 public class UserService {
     private final UserRepository userRepository;
     private final RoleService roleService;
