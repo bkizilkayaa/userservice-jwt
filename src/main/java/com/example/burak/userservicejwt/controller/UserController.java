@@ -28,10 +28,11 @@ public class UserController {
     public ResponseEntity<User> getUser(@PathVariable String username){
         return new ResponseEntity<>(userService.getUser(username),OK);
     }
-    @PostMapping()
+    @PostMapping("/save")
     public ResponseEntity<User> createNewUser(@RequestBody User user){
         return new ResponseEntity<>(userService.saveUser(user),CREATED);
     }
+    //rollere göre authorization
     @PostMapping("/role/addtouser")
     public ResponseEntity<?> addRoleToUser(@RequestBody RoleUserCreateRequest roleUserCreateRequest){
         userService.addRoleToUser(roleUserCreateRequest.getUserName(),
